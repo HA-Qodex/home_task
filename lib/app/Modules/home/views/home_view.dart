@@ -12,12 +12,6 @@ class HomeView extends GetView<HomeController> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Elvan'),
-        backgroundColor: AppColors.primary,
-        centerTitle: true,
-        elevation: 0,
-      ),
       body: Container(
           height: height,
           width: width,
@@ -235,7 +229,8 @@ class HomeView extends GetView<HomeController> {
                               ),
                               IconButton(
                                   onPressed: () {},
-                                  splashColor: AppColors.primary.withOpacity(0.4),
+                                  splashColor:
+                                      AppColors.primary.withOpacity(0.4),
                                   splashRadius: 10.0,
                                   icon: const Icon(
                                     Icons.add_circle,
