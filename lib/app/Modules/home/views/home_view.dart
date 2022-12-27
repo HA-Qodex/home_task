@@ -10,14 +10,9 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     Get.put(HomeController());
-    final width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    final height = MediaQuery
-        .of(context)
-        .size
-        .height;
+    controller.filtered();
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Container(
           height: height,
@@ -45,7 +40,7 @@ class HomeView extends GetView<HomeController> {
                   Text(
                     "View all",
                     style:
-                    GoogleFonts.poppins(fontSize: 12, color: Colors.white),
+                        GoogleFonts.poppins(fontSize: 12, color: Colors.white),
                   ),
                 ],
               ),
@@ -77,20 +72,20 @@ class HomeView extends GetView<HomeController> {
                                 width: 102,
                                 decoration: BoxDecoration(
                                     color: controller.selectedCategory.value ==
-                                        index
+                                            index
                                         ? AppColors.primary
                                         : const Color.fromRGBO(
-                                        104, 104, 104, 0.7),
+                                            104, 104, 104, 0.7),
                                     borderRadius: BorderRadius.circular(12)),
                                 child: Column(
                                   children: [
                                     Expanded(
                                         child: Image.network(
-                                          controller.categoryList[index].image
-                                              .toString(),
-                                          height: 58,
-                                          width: 58,
-                                        )),
+                                      controller.categoryList[index].image
+                                          .toString(),
+                                      height: 58,
+                                      width: 58,
+                                    )),
                                     SizedBox(
                                         height: 30,
                                         child: Text(
@@ -126,7 +121,7 @@ class HomeView extends GetView<HomeController> {
                   Text(
                     "View all",
                     style:
-                    GoogleFonts.poppins(fontSize: 12, color: Colors.white),
+                        GoogleFonts.poppins(fontSize: 12, color: Colors.white),
                   ),
                 ],
               ),
@@ -171,7 +166,7 @@ class HomeView extends GetView<HomeController> {
                                 ),
                                 Column(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Text(
                                       controller.recentOrderList[index].name
@@ -189,8 +184,7 @@ class HomeView extends GetView<HomeController> {
                                           fontWeight: FontWeight.w400),
                                     ),
                                     Text(
-                                      "\$${controller.recentOrderList[index]
-                                          .price.toString()}",
+                                      "\$${controller.recentOrderList[index].price.toString()}",
                                       style: GoogleFonts.poppins(
                                           fontSize: 14,
                                           color: AppColors.primary,
@@ -221,16 +215,16 @@ class HomeView extends GetView<HomeController> {
               Expanded(
                 child: Padding(
                   padding:
-                  const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5),
+                      const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5),
                   child: Obx(() {
                     return GridView.builder(
                         shrinkWrap: true,
                         itemCount: controller.topPicksList.length,
                         gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 20,
-                            mainAxisSpacing: 20),
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 20,
+                                mainAxisSpacing: 20),
                         itemBuilder: (context, index) {
                           return Container(
                             width: 173,
@@ -243,7 +237,7 @@ class HomeView extends GetView<HomeController> {
                               children: [
                                 Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
@@ -251,9 +245,9 @@ class HomeView extends GetView<HomeController> {
                                         width: 75,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                            const BorderRadius.only(
-                                                topLeft:
-                                                Radius.circular(12)),
+                                                const BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(12)),
                                             image: DecorationImage(
                                                 image: NetworkImage(
                                                   controller
@@ -270,22 +264,22 @@ class HomeView extends GetView<HomeController> {
                                             return GestureDetector(
                                               onTap: () {
                                                 controller.wishList.contains(
-                                                    controller.topPicksList[
-                                                    index])
+                                                        controller.topPicksList[
+                                                            index])
                                                     ? controller.wishList
-                                                    .remove(controller
-                                                    .topPicksList[
-                                                index])
+                                                        .remove(controller
+                                                                .topPicksList[
+                                                            index])
                                                     : controller.wishList.add(
-                                                    controller.topPicksList[
-                                                    index]);
+                                                        controller.topPicksList[
+                                                            index]);
                                               },
                                               child: Icon(
                                                 Icons.favorite,
                                                 color: controller.wishList
-                                                    .contains(controller
-                                                    .topPicksList[
-                                                index])
+                                                        .contains(controller
+                                                                .topPicksList[
+                                                            index])
                                                     ? AppColors.primary
                                                     : Colors.white,
                                                 size: 25,
@@ -303,7 +297,7 @@ class HomeView extends GetView<HomeController> {
                                         horizontal: 10.0, vertical: 5),
                                     child: Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           controller.topPicksList[index].name
@@ -333,11 +327,10 @@ class HomeView extends GetView<HomeController> {
                                       horizontal: 10.0, vertical: 5),
                                   child: Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        "\$${controller.topPicksList[index]
-                                            .price.toString()}",
+                                        "\$${controller.topPicksList[index].price.toString()}",
                                         style: GoogleFonts.poppins(
                                             fontSize: 20,
                                             color: AppColors.primary,
@@ -347,23 +340,21 @@ class HomeView extends GetView<HomeController> {
                                         return GestureDetector(
                                           onTap: () {
                                             controller.cartList.contains(
-                                                controller.topPicksList[
-                                                index])
-                                                ? controller.cartList
-                                                .remove(controller
-                                                .topPicksList[
-                                            index])
+                                                    controller
+                                                        .topPicksList[index])
+                                                ? controller.cartList.remove(
+                                                    controller
+                                                        .topPicksList[index])
                                                 : controller.cartList.add(
-                                                controller.topPicksList[
-                                                index]);
+                                                    controller
+                                                        .topPicksList[index]);
                                           },
                                           child: Icon(
-                                            controller.cartList
-                                                .contains(controller
-                                                .topPicksList[
-                                            index])
-                                                ? Icons.remove_circle_rounded:
-                                            Icons.add_circle,
+                                            controller.cartList.contains(
+                                                    controller
+                                                        .topPicksList[index])
+                                                ? Icons.remove_circle_rounded
+                                                : Icons.add_circle,
                                             color: AppColors.primary,
                                           ),
                                         );

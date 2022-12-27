@@ -16,14 +16,13 @@ class HomeController extends GetxController {
   var selectedCategory = 0.obs;
 
   @override
-  void onReady() {
+  void onInit() {
     categoryList.bindStream(categoryStream());
     productList.bindStream(productStream());
-    // filtered(categoryType: productList[0].categoryType.toString());
-    super.onReady();
+    super.onInit();
   }
 
-  static Stream<List<CategoryModel>> categoryStream() {
+  Stream<List<CategoryModel>> categoryStream() {
     return FirebaseFirestore.instance
         .collection('categories')
         .snapshots()
@@ -34,11 +33,12 @@ class HomeController extends GetxController {
         CategoryModel.fromDocumentSnapshot(documentSnapshot: category);
         categories.add(categoryModel);
       }
-      return categories;
+
+      return categories.reversed.toList();
     });
   }
 
-  static Stream<List<ProductModel>> productStream() {
+  Stream<List<ProductModel>> productStream(){
     return FirebaseFirestore.instance
         .collection('products')
         .snapshots()
@@ -52,9 +52,9 @@ class HomeController extends GetxController {
     });
   }
 
-  void filtered({required String categoryType}){
-    recentOrderList.assignAll(productList.where((e) => e.categoryType == categoryType && e.orderStatus == 1));
-    topPicksList.assignAll(productList.where((e) => e.categoryType == categoryType && e.orderStatus == 0));
+  void filtered({String? categoryType}){
+    recentOrderList.assignAll(productList.where((e) => e.categoryType == (categoryType ?? categoryList.first.categoryType) && e.orderStatus == 1));
+    topPicksList.assignAll(productList.where((e) => e.categoryType == (categoryType ?? categoryList.first.categoryType) && e.orderStatus == 0));
   }
 
 }
