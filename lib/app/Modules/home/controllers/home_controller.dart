@@ -16,12 +16,15 @@ class HomeController extends GetxController {
   var selectedCategory = 0.obs;
 
   @override
-  void onInit() {
+  void onInit() async {
     categoryList.bindStream(categoryStream());
     productList.bindStream(productStream());
+    await Future.delayed(const Duration(milliseconds: 2000));
+    filtered();
     super.onInit();
   }
 
+// Fetch Category Data from Firebase
   Stream<List<CategoryModel>> categoryStream() {
     return FirebaseFirestore.instance
         .collection('categories')
@@ -38,6 +41,7 @@ class HomeController extends GetxController {
     });
   }
 
+  // Fetch Product Data from Firebase
   Stream<List<ProductModel>> productStream(){
     return FirebaseFirestore.instance
         .collection('products')

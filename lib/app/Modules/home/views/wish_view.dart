@@ -34,10 +34,11 @@ class WishView extends GetView<HomeController> {
               const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 20,
+                  childAspectRatio: 0.9,
                   mainAxisSpacing: 20),
               itemBuilder: (context, index) {
                 return Container(
-                  width: 173,
+                  // width: 173,
                   // height: 211,
                   decoration: BoxDecoration(
                       color: const Color.fromRGBO(104, 104, 104, 0.7),
