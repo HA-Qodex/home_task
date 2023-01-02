@@ -14,7 +14,6 @@ class StateProviderPage extends ConsumerWidget {
       if(next % 10 == 0){
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("You have reached $next"),
-          showCloseIcon: true,
             behavior: SnackBarBehavior.floating,
           )
         );
