@@ -1,23 +1,10 @@
-import 'package:firebase_core/firebase_core.dart';
+import 'package:Riverpod/pages/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get/get.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'app/resources/app_colors.dart';
-import 'app/routes/app_pages.dart';
 
 void main()async{
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    // statusBarBrightness: Brightness.light,
-    // statusBarIconBrightness: Brightness.light,
-    statusBarColor: Colors.transparent,
-    // systemNavigationBarIconBrightness: Brightness.light,
-  ));
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -25,14 +12,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Elvan',
+      title: 'Riverpod',
       theme: ThemeData(
-        primarySwatch: AppColors.themeColor,
+        primarySwatch: Colors.deepPurple,
       ),
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
+      home: const HomePage(),
     );
   }
 }
